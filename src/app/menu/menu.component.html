@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row main justify-content-center">
+       
+    
+        <ul class="col-md-12 top-level-menu">
+            
+            <li *ngxPermissionsOnly="[]">
+                <a 
+                routerLinkActive="active" 
+                > Nomenclatures
+                </a> 
+                <ul class="second-level-menu" >
+                    <li *ngxPermissionsOnly="[]">
+                        <a [routerLink]="['nomencl']"
+                            > Gestion
+                        </a>
+                    </li>
+                </ul>
+                
+            </li>
+           
+            <li *ngxPermissionsOnly="[]">
+                <a 
+                routerLinkActive="active" 
+                > Parametrages Worflow
+                </a> 
+                <ul class="second-level-menu" >
+                    <li>
+                        <a [routerLink]="['/workflow/dashboard']" 
+                        routerLinkActive="active"  
+                            > Gestion des regions
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/configs/service']" 
+                        routerLinkActive="active"  
+                            > Gestion des unités
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/configs/service']" 
+                        routerLinkActive="active"  
+                            > Gestion des ressources
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        
+    </div>
+    </div>
+    

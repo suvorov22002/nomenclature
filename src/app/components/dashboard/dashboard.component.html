@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p-table #dt2 [value]="employeeData" [responsive]="true" [paginator]="true" [rows]="10"
+                styleClass="p-datatable-striped" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="title" style="padding-left: 20px;text-align: center">
+                        Critères de recherche
+                        <form name="findForm" #findForm="ngForm">
+                            <mat-form-field class="info">
+                                <mat-label>Code</mat-label>
+                                <input matInput [(ngModel)]="info.code" name="code">
+                            </mat-form-field>&nbsp;
+                            <mat-form-field class="info">
+                                <mat-label>Code Categorie</mat-label>
+                                <input matInput [(ngModel)]="info.codeCategorie" name="codeCategorie">
+                            </mat-form-field>&nbsp;
+                            <mat-form-field class="info">
+                                <mat-label>categorie</mat-label>
+                                <input matInput [(ngModel)]="info.categorie" name="categorie">
+                            </mat-form-field>&nbsp;
+                            <mat-form-field class="info">
+                                <mat-label>Libelle</mat-label>
+                                <input matInput [(ngModel)]="info.libelle" name="libelle">
+                            </mat-form-field>&nbsp;
+                            <input type="submit" (click)="searchForm(info)
+                    " value="Chercher" />
+                        </form>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="padding-left: 20px;">Code</th>
+                        <th>CodeCategorie et Categorie
+                        </th>
+                        <th>Libelle</th>
+                        <th id="samme" style="padding-right: 10px; ">Action <button *ngxPermissionsOnly="['NOM_AJOUTER']" id="same"
+                                style="background-color: #aaa7a7 !important;" mat-button (click)="addBlack()">Ajouter
+                                Nomenclature</button>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <td class="break" style="padding-left: 20px;">{{item.code }}</td>
+                        <td class="break">{{item.codeCategorie}} {{item.categorie}} </td>
+                        <td>{{item.libelle}}</td>
+                        <td>
+                            <button class="btn btn-info" (click)="onView(item)" style="font-size: 20px !important;"
+                                class="p-button-rounded p-button-text">
+                                <i class="fa fa-eye"></i>
+                            </button> &nbsp;
+                            <button *ngxPermissionsOnly="['NOM_MODIFIER']" class="btn btn-info" (click)="onEditmat(item)" style="font-size: 20px !important;"
+                                class="p-button-rounded p-button-text">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            &nbsp;
+                            <button *ngxPermissionsOnly="['NOM_SUPPRIMER']" class="btn" (click)="onDeletemat(item)" style="font-size: 20px !important;"
+                                class="p-button-rounded p-button-text">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage" let-item>
+                    <tr>
+                        <td colspan="5" style="text-align: center;" translate>
+                            NO DATA
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

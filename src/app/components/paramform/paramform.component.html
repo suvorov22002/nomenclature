@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-md-12">
+        <form name="findForm" #findForm="ngForm" style="height: 200px;width:1000px; background-color: whitesmoke;">
+            <mat-form-field class="info">
+                <mat-label>code</mat-label>
+                <input matInput style="padding: 0;width: 200px" [(ngModel)]="info.code" name="code" readonly>
+            </mat-form-field> &nbsp;
+            <mat-form-field class="info">
+                <mat-label>codeCategorie</mat-label>
+                <input matInput style="padding: 0;width:200px;" [(ngModel)]="info.codeCategorie" name="codeCategorie"
+                    readonly>
+            </mat-form-field> &nbsp;
+            <mat-form-field class="info">
+                <mat-label>categorie</mat-label>
+                <input matInput style="padding: 0;" [(ngModel)]="info.categorie" name="categorie" readonly>
+            </mat-form-field>&nbsp;
+            <mat-form-field class="info" style="width: 300px!important;">
+                <mat-label>libelle</mat-label>
+                <textarea matInput style="padding: 0; " [(ngModel)]="info.libelle" name="libelle" readonly></textarea>
+            </mat-form-field>&nbsp;
+
+            <mat-form-field class="info">
+                <mat-label>actif</mat-label>
+                <mat-checkbox [checked]="isChecked" style="color:#ca2020;" [disabled]="readOnlyStyleGuideNotes" >
+                </mat-checkbox>
+                <input matInput style="padding: 0; " [(ngModel)]="info.actif" name="actif" hidden>
+            </mat-form-field>
+
+            <div mat-dialog-actions>
+                <button mat-button (click)="onNoClick()" tabindex="-1">Fermer</button>
+            </div>
+        </form>
+    </div>
+</div>

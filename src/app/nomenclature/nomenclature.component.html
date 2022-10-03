@@ -1,0 +1,155 @@
+<div class="w-full flex justify-center">
+    <div class="w-full lg:w-10/12 px-4">
+        <div
+        class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0"
+      >
+    <!-- Header ajout d'evidences -->
+       <div class="rounded-t bg-white mb-0 px-6 py-2">
+          <div class="text-center flex justify-between">
+          <h6 class="text-blueGray-700 text-xl font-bold">Categorie des nomenclatures.</h6> 
+          <!--
+          <button
+              class="bg-blueGray-900 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+              type="button"  (click)="toggleCollapseShow()"
+            >
+          -->
+            <button
+                class="btn btn-primary text-black active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                type="button" (click)="toggleCollapseShow()"
+              >
+             <i class="fa fa-plus" aria-hidden="true"></i>
+              Ajouter categorie.
+            </button>
+
+          </div>
+        </div>
+        <!-- form ajout d'evidences -->
+        <div class="flex-auto px-4 lg:px-10 py-2 pt-0" [ngClass]="collapseShow ? 'show':'hidden'">
+        <form autocomplete="off"> 
+            <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+              
+            </h6>
+            <div  class="flex flex-wrap">
+              <div class="w-full lg:w-3/12 px-4">
+                <div class="relative w-full mb-3">
+                  <mat-form-field  class="" appearance="fill">
+                    <mat-label>Code</mat-label>
+                    <input 
+                      matInput 
+                      style="padding: 0;" 
+                      name="code" 
+                      [maxlength]=20
+                      [minlength]=5
+                      [(ngModel)]="evidence.code" 
+                      placeholder="Code" 
+                      required 
+                      (ngModelChange)="evidence.code = $event.toUpperCase()"
+                    > 
+                  </mat-form-field>
+
+                </div>
+              </div>
+              <div class="w-full lg:w-3/12 px-4">
+                <div class="relative w-full mb-3">
+                  <mat-form-field  appearance="fill">
+                    <mat-label>Categorie</mat-label>
+                    <input 
+                    matInput 
+                    style="padding: 0;" 
+                    name="categorie" 
+                    [(ngModel)]="evidence.categorie" 
+                    required
+                    > 
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="w-full lg:w-3/12 px-4">
+                <div class="relative w-full mb-3">
+                  <mat-form-field  appearance="fill">
+                    <mat-label>Code Categorie</mat-label>
+                    <input 
+                    matInput 
+                    style="padding: 0;" 
+                    name="codeCateg" 
+                    [(ngModel)]="evidence.codeCategorie" 
+                    required
+                    > 
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="w-full lg:w-3/12 px-4">
+                <div class="relative w-full mb-3">
+                  <mat-form-field  appearance="fill">
+                    <mat-label>Libelle</mat-label>
+                    <input 
+                    matInput 
+                    style="padding: 0;" 
+                    name="libelle" 
+                    [(ngModel)]="evidence.libelle" 
+                    required
+                    > 
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full lg:w-11/12 mb-3" >
+                  <button
+                    class="bg-blueGray-900 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    type="button"
+                    (click)="save()"
+                  >
+                  <i class="fa fa-check-square" aria-hidden="true"></i>
+                  Valider
+                  </button>
+                  <button
+                    class="bg-blueGray-900 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    type="button"
+                  >
+                  <i class="fa fa-check-square" aria-hidden="true"></i>
+                  Annuler
+                  </button>
+                </div>
+              </div>
+         
+            </div>
+      
+           
+        </form> 
+        </div>
+        <hr class="mt-6 border-b-1 border-blueGray-300" />
+        <!-- Header liste d'evidences -->
+        <div class="rounded-t bg-white mb-0 px-6 py-2">
+            <div class="text-center flex justify-between">
+            <h6 class="text-blueGray-700 text-xl font-bold">Liste des nomenclatures</h6> 
+              <button
+                class="btn btn-primary text-black active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                type="button" (click)="toggleCollapseShow1()"
+              >
+              <i class="fa fa-eye" aria-hidden="true"></i>
+                Visualiser
+              </button>
+  
+            </div>
+
+        </div>
+
+            <!-- Table liste d'evidences -->
+    <!--    <div class="flex-auto px-4 lg:px-10 py-10 pt-0" [ngClass]="collapseShow1 ? 'show':'hidden'">-->
+        <div class="flex-auto px-4 lg:px-10 py-2 pt-0" [ngClass]="collapseShow1 ? 'show':'hidden'"> 
+            <div class="flex flex-wrap mt-4">
+                <div class="w-full mb-12 px-4">
+                  <app-card-table [nomendata]="nomenData"></app-card-table>
+                </div>
+            
+            <!--  <div class="w-full mb-12 px-4">
+                  <app-card-table color="dark"></app-card-table>
+                </div>
+            -->  
+            </div>
+        </div>
+
+      </div>
+      
+    </div>
+</div>
+  

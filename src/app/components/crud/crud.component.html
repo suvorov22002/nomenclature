@@ -1,0 +1,53 @@
+
+<button mat-button (click)="addBlack()">Ajouter Blackliste</button>
+
+<p-table #dt2 [value]="employeeData" [responsive]="true" [paginator]="true" [rows]="10" [globalFilterFields]="['first_name','organi','second_name']"
+    styleClass="p-datatable-striped" dataKey="id">
+    <ng-template pTemplate="caption">
+        <div class="title" style="padding-left: 20px;text-align: center">
+            Liste des blacklist
+            <input style="font-size: 15px;color: black !important;" pInputText type="text" (input)="dt2.filterGlobal($event.target.value, 'contains')"
+                placeholder="Entrer un mot clé" />
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+
+        <tr>
+            <th style="padding-left: 20px;">Data id</th>
+            <th>Nom et Prenom </th>
+            <th>organisation</th>
+            <th>Action</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+
+        <tr>
+
+            <td class="break" style="padding-left: 20px;">{{item.dataid }}</td>
+            <td class="break">{{item.first_name}} {{item.second_name}} </td>
+
+            <td>{{item.organi}}</td>
+            <td>
+                <button class="btn btn-info" (click)="onView(item)" style="font-size: 20px !important;" class="p-button-rounded p-button-text">
+                    <i class="fa fa-eye"></i>
+                </button>                &nbsp;
+
+                <button class="btn btn-info"  (click)="onEditmat(item)" style="font-size: 20px !important;" class="p-button-rounded p-button-text">
+                    <i class="fa fa-edit"></i>
+                </button>
+                &nbsp;
+                <button class="btn"  (click)="onDeletemat(item)" style="font-size: 20px !important;" class="p-button-rounded p-button-text">
+                    <i class="fa fa-times"></i>
+                </button>
+            </td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage" let-item>
+        <tr>
+            <td colspan="5" style="text-align: center;" translate>
+                No data
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

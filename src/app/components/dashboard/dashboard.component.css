@@ -1,0 +1,13 @@
+.card {
+  text-align: center;
+  padding: 1%
+}
+table {
+  margin: 0 auto;
+}
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+ padding-left: 1600px;
+ color: red;
+}
