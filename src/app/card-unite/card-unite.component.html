@@ -1,0 +1,69 @@
+<div
+  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"
+  [ngClass]="color === 'light' ? 'bg-white' : 'bg-white'"
+>
+    <h4 class="text-blueGray-700 text-xs font-bold title-imp">Rechercher une unite</h4> <br>
+    <div class="title" style="padding-left: 5px;text-align: left">
+        <!--
+        <mat-form-field class="info">
+            <mat-label>Code</mat-label>
+            <input matInput [(ngModel)]="info.code" name="code">
+        </mat-form-field>&nbsp;
+        <input type="button" (click)="search(info)" value="Rechercher" />
+    -->
+    </div>
+
+            <p-table #dt [columns]="cols" [value]="listUnit" [responsive]="true" [paginator]="true" [rows]="10"
+                styleClass="p-datatable-striped" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div style="text-align: right">        
+                        <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+                        <input type="text" pInputText size="50" placeholder="Rechercher" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns">
+                            {{col.header}}
+                        </th>
+                        <!--
+                        <th style="width: 25%;">Code</th>
+                        <th style="width: 30%;">Libelle</th>
+                        <th style="width: 25%;">Responsable</th>
+                        <th style="width: 15%;">Action</th>
+                        -->
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <td class="break" style="padding-left: 20px;">{{item.code}}</td>
+                        <td class="break">{{item.libelle}} </td>
+                        <td class="break">{{item.val3}} </td>
+                        <td>
+                            <button (click)="onView(item)" style="font-size: 20px !important;"
+                                class="prounded-md btnstyle2">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button> &nbsp;
+                        
+                            <button *ngxPermissionsOnly="['NOM_MODIFIER']" (click)="onEditmat(item)" style="font-size: 20px !important;"
+                                class="rounded-md btnstyle2">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            &nbsp;
+                            <button *ngxPermissionsOnly="['NOM_SUPPRIMER']" (click)="onDeletemat(item)" style="font-size: 20px !important;"
+                                class="rounded-md btnstyle2">
+                                <i class="fa fa-times"></i>
+                            </button>
+                       
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage" let-item>
+                    <tr>
+                        <td colspan="5" style="text-align: center;" translate>
+                            PAS DE REGION.
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>

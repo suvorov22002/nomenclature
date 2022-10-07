@@ -17,6 +17,7 @@ export class NomenclatureComponent implements OnInit {
   nomenData!: any; //liste de toutes les categ de nomenclature
   evidence!:any;
   formValue!: FormGroup;
+  prop_in: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private api: ConsultService, private afbcore:AfbcoreService) {
     this.evidence = {}
@@ -28,29 +29,32 @@ export class NomenclatureComponent implements OnInit {
 
   ngOnInit() {
     this.formValue = this.formBuilder.group({})
+    this.obj = {};
+    this.obj.actif = true;
+    this.searchRegion(this.obj);
   }
 
   toggleCollapseShow() {
     this.collapseShow = true;
     this.collapseShow1 = !this.collapseShow;
-
-    //another implementations will goes here
+    this.prop_in = !this.prop_in;
   }
   toggleCollapseShow1() {
     this.collapseShow1 = true;
     this.collapseShow = !this.collapseShow1;
-    this.obj = {};
-    this.obj.actif = true;
-    this.searchForm(this.obj);
+    //this.obj = {};
+    //this.obj.actif = true;
+    this.searchRegion(this.obj);
+    this.prop_in = !this.prop_in;
   }
 
-  searchForm(info) {
-      this.api.getSrch(info)
-        .subscribe(res => {
-          this.nomenData = res.datas;
-        },
-          err => {
-          })
+  searchRegion(info) {
+    this.api.searhCateg(info)
+      .subscribe(res => {
+        this.nomenData = res.datas;
+      },
+      err => {
+      })
   }
   
   save() {
@@ -60,7 +64,7 @@ export class NomenclatureComponent implements OnInit {
       this.afbcore.showMessage('DANGER', 'Veuillez renseigner les champs obligatoire');
       return;
     }
-    this.api.postEmploye(this.evidence)
+    this.api.addCategorie(this.evidence)
     .subscribe(res => {
       this.afbcore.showMessage('SUCCESS', 'Categorie crée avec succès');
       this.getAllNomcl();

@@ -14,7 +14,7 @@ export class ConsultService {
 
   constructor(private http: HttpClient) { }
 
-  postEmploye(data: any) {
+  addCategorie(data: any) {
     return this.http.post<any>(this.apiHost+"/nomenclature/add/", data)
       .pipe(map((res: any) => {
         return res;
@@ -34,12 +34,27 @@ export class ConsultService {
       }))
   }
 
-  getSrch(data: any) {
+  saveCateg(data: any) {
     return this.http.post<any>(this.apiHost+"/nomenclature/findnomenclature", data)
       .pipe(map((res: any) => {
         return res;
       }))
   }
+
+  searhCateg(data: any) {
+    /*
+    return this.http.get<any>(this.apiHost+"/findbycategorie")
+      .pipe(map((res: any) => {
+        return res;
+      }))
+   */
+      return this.http.post<any>(this.apiHost+"/nomenclature/findnomenclature", data)
+      .pipe(map((res: any) => {
+        return res;
+      }))
+  }
+
+
 
   getData(data: any, first_name: string, second_name: string, organi: string, sexe_gel: string) {
     return this.http.get<any>("http://172.21.10.39:8080/api/v1/blacklistsearch/" + first_name+"/"+second_name+"/"+organi+"/"+sexe_gel, data)

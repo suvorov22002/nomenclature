@@ -18,7 +18,7 @@ import { ParamformComponent } from './components/paramform/paramform.component';
 import { EditformComponent } from './components/editform/editform.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatDialogModule, MatInputModule, MatButtonModule, MatAutocompleteModule, MatCheckboxModule, MAT_DATE_LOCALE } from '@angular/material';
+import { MatDialogModule, MatInputModule, MatButtonModule, MatAutocompleteModule, MatCheckboxModule, MAT_DATE_LOCALE, MatSelectModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
@@ -29,6 +29,11 @@ import { DialogService, DynamicDialogModule, DynamicDialogConfig, DynamicDialogR
 import { AppinitService } from './service/appinit.service';
 import { NomenclatureComponent } from './nomenclature/nomenclature.component';
 import { CardTableComponent } from './card-table/card-table.component';
+import { RegionBanqueComponent } from './region-banque/region-banque.component';
+import { RegionUniteComponent } from './region-unite/region-unite.component';
+import { RegionRessourceComponent } from './region-ressource/region-ressource.component';
+import { CardRegionComponent } from './card-region/card-region.component';
+import { CardUniteComponent } from './card-unite/card-unite.component';
 
 export function initializeApp1(appInitService: AppinitService) {
   return (): Promise<any> => { 
@@ -49,7 +54,12 @@ export function initializeApp1(appInitService: AppinitService) {
     EditformComponent,
     DeleteComponent,
     NomenclatureComponent,
-    CardTableComponent
+    CardTableComponent,
+    RegionBanqueComponent,
+    RegionUniteComponent,
+    RegionRessourceComponent,
+    CardRegionComponent,
+    CardUniteComponent
   ],
   imports: [
     AfbcoreModule,
@@ -62,6 +72,7 @@ export function initializeApp1(appInitService: AppinitService) {
     CommonModule,
     MatDialogModule,
     MatInputModule,
+    MatSelectModule,
     DynamicDialogModule,
     ReactiveFormsModule,
     MatButtonModule,

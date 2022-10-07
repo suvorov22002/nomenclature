@@ -22,25 +22,25 @@
             <li *ngxPermissionsOnly="[]">
                 <a 
                 routerLinkActive="active" 
-                > Parametrages Worflow
+                > Gestion des regions
                 </a> 
                 <ul class="second-level-menu" >
                     <li>
-                        <a [routerLink]="['/workflow/dashboard']" 
+                        <a [routerLink]="['/region/banque']" 
                         routerLinkActive="active"  
-                            > Gestion des regions
+                            >Regions banques
+                        </a>
+                    </li> 
+                    <li>
+                        <a [routerLink]="['/region/unite']" 
+                        routerLinkActive="active"  
+                            > Regions unités
                         </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/configs/service']" 
+                        <a [routerLink]="['/region/ressource']" 
                         routerLinkActive="active"  
-                            > Gestion des unités
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/configs/service']" 
-                        routerLinkActive="active"  
-                            > Gestion des ressources
+                            > Ressources unité
                         </a>
                     </li>
                 </ul>

@@ -2,46 +2,19 @@
   class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"
   [ngClass]="color === 'light' ? 'bg-white' : 'bg-white'"
 >
-    <h4 class="text-blueGray-700 text-xs font-bold title-imp px-4">Liste des categories</h4> <br>
+    <h4 class="text-blueGray-700 text-xs font-bold title-imp">Rechercher une region</h4> <br>
     <div class="title" style="padding-left: 5px;text-align: left">
         <!--
         <mat-form-field class="info">
             <mat-label>Code</mat-label>
             <input matInput [(ngModel)]="info.code" name="code">
         </mat-form-field>&nbsp;
-
-        <mat-form-field appearance="standard" class="full-width">
-            <mat-label>Filter</mat-label>
-            <input
-              matInput
-              (keyup)="applyFilter($event)"
-              placeholder="Search"
-              #input
-            />
-        </mat-form-field>
-    -->
-    <!--
-        <mat-form-field class="info">
-            <mat-label>Categorie</mat-label>
-            <input matInput [(ngModel)]="info.categorie" name="codeCategorie">
-        </mat-form-field>&nbsp;
-        <mat-form-field class="info">
-            <mat-label>Code categorie</mat-label>
-            <input matInput [(ngModel)]="info.codeCategorie" name="categorie">
-        </mat-form-field>&nbsp;
-        <mat-form-field class="info">
-            <mat-label>Libelle</mat-label>
-            <input matInput [(ngModel)]="info.libelle" name="libelle">
-        </mat-form-field>
-    
-        &nbsp;
-        <input type="submit" (click)="search(info)" value="Rechercher" />
-    -->
+        <input type="button" (click)="search(info)" value="Rechercher" />
+     -->
     </div>
 
-            <p-table #dt [columns]="cols" [value]="nomendata" [responsive]="true" [paginator]="true" [rows]="10"
+            <p-table #dt [columns]="cols" [value]="listRegion" [responsive]="true" [paginator]="true" [rows]="10"
                 styleClass="p-datatable-striped" dataKey="id">
-
                 <ng-template pTemplate="caption">
                     <div style="text-align: right">        
                         <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
@@ -55,7 +28,6 @@
                         </th>
                         <!--
                         <th style="width: 15%;">Code</th>
-                        <th style="width: 25%;">Categorie</th>
                         <th style="width: 40%;">Libelle</th>
                         <th style="width: 15%;">Action</th>
                         -->
@@ -63,31 +35,8 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-item let-columns="columns">
                     <tr>
-
-                        <td *ngFor="let col of columns">
-                            {{item[col.field]}}
-                        </td>
-                        <td>
-                            <button (click)="onView(item)" style="font-size: 20px !important;"
-                                class="prounded-md btnstyle2">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            </button> &nbsp;
-                        
-                            <button *ngxPermissionsOnly="['NOM_MODIFIER']" (click)="onEditmat(item)" style="font-size: 20px !important;"
-                                class="rounded-md btnstyle2">
-                                <i class="fa fa-edit"></i>
-                            </button>
-                            &nbsp;
-                            <button *ngxPermissionsOnly="['NOM_SUPPRIMER']" (click)="onDeletemat(item)" style="font-size: 20px !important;"
-                                class="rounded-md btnstyle2">
-                                <i class="fa fa-times"></i>
-                            </button>
-                       
-                        </td>
-<!--
                         <td class="break" style="padding-left: 20px;">{{item.code }}</td>
-                        <td class="break">{{item.codeCategorie}} &nbsp; {{item.categorie}} </td>
-                        <td>{{item.libelle}}</td>
+                        <td class="break">{{item.libelle}} </td>
                         <td>
                             <button (click)="onView(item)" style="font-size: 20px !important;"
                                 class="prounded-md btnstyle2">
@@ -105,13 +54,12 @@
                             </button>
                        
                         </td>
-            -->
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage" let-item>
                     <tr>
                         <td colspan="5" style="text-align: center;" translate>
-                            PAS DE DONNEE.
+                            PAS DE REGION.
                         </td>
                     </tr>
                 </ng-template>

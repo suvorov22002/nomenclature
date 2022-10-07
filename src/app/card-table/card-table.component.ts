@@ -16,8 +16,14 @@ import { ConsultService } from '../service/consult.service';
 export class CardTableComponent implements OnInit {
 
   @Input('nomendata')  nomendata:any;
-  info!:any;
-  nomenData!: any;
+  info?:any;
+  nomenData?: any;
+  cols: Array<any> =  [
+    {header: 'Code',field: 'code'},
+    {header: 'Categorie', field: 'categorie'},
+    {header: 'Libelle', field: 'libelle'},
+    //{header: 'Action', field:'actif'}
+  ]
 
   constructor(private api: ConsultService, private afbcore:AfbcoreService, private dialogService: DialogService) { 
     this.info = {}
@@ -31,7 +37,7 @@ export class CardTableComponent implements OnInit {
   }
 
   search(info) {
-    this.api.getSrch(info)
+    this.api.searhCateg(info)
         .subscribe(res => {
           this.nomendata = res.datas;
         },
@@ -79,6 +85,11 @@ export class CardTableComponent implements OnInit {
 
     })
 
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    //this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

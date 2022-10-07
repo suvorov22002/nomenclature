@@ -6,117 +6,121 @@
     <!-- Header ajout d'evidences -->
        <div class="rounded-t bg-white mb-0 px-6 py-2">
           <div class="text-center flex justify-between">
-          <h6 class="text-blueGray-700 text-xl font-bold">Categorie des nomenclatures.</h6> 
+          <h6 class="text-blueGray-700 text-xl font-bold">Gestion Region / Unite.</h6> 
+         
           <button
             class="btn btn-primary text-black active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
             type="button" (click)="toggleCollapseShow1()" [hidden] = "!prop_in"
-          >
-          <i class="fa fa-eye" aria-hidden="true"></i>
+            >
+            <i class="fa fa-eye" aria-hidden="true"></i>
             Visualiser
           </button>
 
+          <!--
+          <button
+              class="bg-blueGray-900 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+              type="button"  (click)="toggleCollapseShow()"
+            >
+          -->
             <button
                 class="btn btn-primary text-black active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                 type="button" (click)="toggleCollapseShow()" [hidden] = "prop_in"
               >
              <i class="fa fa-plus" aria-hidden="true"></i>
-              Ajouter categorie.
+              Definir unite.
             </button>
 
           </div>
         </div>
         <!-- form ajout d'evidences -->
         <div class="flex-auto px-4 lg:px-10 py-2 pt-0" [ngClass]="collapseShow ? 'show':'hidden'">
-        <form autocomplete="off"> 
+    <!--    <form autocomplete="off"> -->
             <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               
             </h6>
             <div  class="flex flex-wrap">
-              <div class="w-full lg:w-3/12 px-4">
-                <div class="relative w-full mb-3">
+              <div class="w-full px-4">
+                <div class="flex flex-wrap mt-3 mb-3 gap-6">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Metier</mat-label>
+                    <mat-select [(ngModel)]="unite.val2" 
+                        (selectionChange)="onChange($event)" required 
+                    name="metier"   placeholder="Choisir metier">
+                    <mat-option *ngFor="let c of categories" [value]="c.code">
+                        {{c.name}}
+                    </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
                   <mat-form-field  class="" appearance="fill">
-                    <mat-label>Code</mat-label>
+                    <mat-label>Direction</mat-label>
                     <input 
                       matInput 
                       style="padding: 0;" 
-                      name="code" 
+                      name="unite" 
                       [maxlength]=20
                       [minlength]=5
-                      [(ngModel)]="evidence.code" 
-                      placeholder="Code" 
+                      [(ngModel)]="unite.libelle" 
+                      placeholder="nom unite" 
                       required 
-                      (ngModelChange)="evidence.code = $event.toUpperCase()"
+                      (ngModelChange)="unite.libelle = $event.toUpperCase()"
                     > 
+                  </mat-form-field>
+
+                  <mat-form-field appearance="fill">
+                    <mat-label>Responsable</mat-label>
+                    <mat-select [(ngModel)]="unite.val3" 
+                        (selectionChange)="onChange1($event)" required 
+                     name="Superviseur"   placeholder="Choisir chef">
+                    <mat-option *ngFor="let res of responsables" [value]="res.email">
+                        {{res.name}}
+                    </mat-option>
+                    </mat-select>
                   </mat-form-field>
 
                 </div>
               </div>
-              <div class="w-full lg:w-3/12 px-4">
-                <div class="relative w-full mb-3">
-                  <mat-form-field  appearance="fill">
-                    <mat-label>Categorie</mat-label>
-                    <input 
-                    matInput 
-                    style="padding: 0;" 
-                    name="categorie" 
-                    [(ngModel)]="evidence.categorie" 
-                    required
-                    > 
-                  </mat-form-field>
-                </div>
+             
+             
+              <div class="w-full  px-4">
+                <h4 class="text-blueGray-700 text-xs font-bold title-imp">Selectionner region.</h4> <br>
+                <section class="example-section">
+                    <span *ngFor="let age of agency; let index = index; let isFirst = first; let isOdd = odd;" class="px-2 example-list-section">
+                        
+                           
+                            <mat-checkbox class="example-margin"  [color]="afbcolor" [(ngModel)]="age.completed" (ngModelChange)="updateAllComplete()">{{age.region.libelle}}
+                            </mat-checkbox>
+                      
+                    </span>
+                </section>
               </div>
-              <div class="w-full lg:w-3/12 px-4">
-                <div class="relative w-full mb-3">
-                  <mat-form-field  appearance="fill">
-                    <mat-label>Code Categorie</mat-label>
-                    <input 
-                    matInput 
-                    style="padding: 0;" 
-                    name="codeCateg" 
-                    [(ngModel)]="evidence.codeCategorie" 
-                    required
-                    > 
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="w-full lg:w-3/12 px-4">
-                <div class="relative w-full mb-3">
-                  <mat-form-field  appearance="fill">
-                    <mat-label>Libelle</mat-label>
-                    <input 
-                    matInput 
-                    style="padding: 0;" 
-                    name="libelle" 
-                    [(ngModel)]="evidence.libelle" 
-                    required
-                    > 
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="w-full  mt-3 px-4 py-4"> 
+            <div class="w-full  mt-3 px-4 py-4"> 
+              <!-- <div class="rounded-t bg-white mb-0 px-4 py-4"> --> 
+                <!--<div class="relative w-full lg:w-11/12 mb-3" >-->
                 <div class="relative text-center flex justify-end">
+                 <button
+                    class="bg-blueGray-900 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    type="button" (click)="new()"
+                  >
+                  <i class="fa fa-check-square" aria-hidden="true"></i>
+                        Nouveau
+                  </button>
                   <button
                     class="bg-blueGray-900 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                     type="button"
                     (click)="save()"
                   >
                   <i class="fa fa-check-square" aria-hidden="true"></i>
-                  Valider
+                        Valider
                   </button>
-                  <button
-                    class="bg-blueGray-900 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                    type="button"
-                  >
-                  <i class="fa fa-check-square" aria-hidden="true"></i>
-                  Annuler
-                  </button>
+
                 </div>
               </div>
          
             </div>
       
            
-        </form> 
+     <!--   </form> -->
         </div>
         <hr class="mt-6 border-b-1 border-blueGray-300" />
         <!-- Header liste d'evidences -->
@@ -135,12 +139,10 @@
 
         </div>
 
-            <!-- Table liste d'evidences -->
-    <!--    <div class="flex-auto px-4 lg:px-10 py-10 pt-0" [ngClass]="collapseShow1 ? 'show':'hidden'">-->
         <div class="flex-auto px-4 lg:px-10 py-2 pt-0" [ngClass]="collapseShow1 ? 'show':'hidden'"> 
             <div class="flex flex-wrap mt-4">
                 <div class="w-full mb-12 px-4">
-                  <app-card-table [nomendata]="nomenData"></app-card-table>
+                   <app-card-unite [unitdata]="listUnit"></app-card-unite>
                 </div>
             </div>
         </div>

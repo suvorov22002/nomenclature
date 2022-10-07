@@ -72,7 +72,7 @@ export class AjouterComponent implements OnInit {
 
   postEmployeeDetails(info) {
     info.actif="true";
-    this.api.postEmploye(info)
+    this.api.addCategorie(info)
       .subscribe(res => {
         alert("Individual added sucessfully")
         let ref = document.getElementById('cancel');
@@ -86,7 +86,7 @@ export class AjouterComponent implements OnInit {
 
   searchForm(info) {
     info.actif="true";
-      this.api.getSrch(info)
+      this.api.searhCateg(info)
         .subscribe(res => {
           this.employeeData = res.datas;
           this.formValue.reset();

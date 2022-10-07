@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit {
   }
   searchForm(info) {
     info.actif="true";
-      this.api.getSrch(info)
+      this.api.searhCateg(info)
         .subscribe(res => {
           this.employeeData = res.datas;
           this.formValue.reset();

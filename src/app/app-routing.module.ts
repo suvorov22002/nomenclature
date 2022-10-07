@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CrudComponent } from './components/crud/crud.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BodyComponent } from './body/body.component';
 import { NomenclatureComponent } from './nomenclature/nomenclature.component';
+import { RegionBanqueComponent } from './region-banque/region-banque.component';
+import { RegionRessourceComponent } from './region-ressource/region-ressource.component';
+import { RegionUniteComponent } from './region-unite/region-unite.component';
 
 
 const routes: Routes = [
@@ -12,9 +14,10 @@ const routes: Routes = [
     component: BodyComponent,
     children: [
       
-  { path: 'workflow/dashboard', component: DashboardComponent },
+  { path: 'region/banque', component: RegionBanqueComponent },
+  { path: 'region/unite', component: RegionUniteComponent },
+  { path: 'region/ressource', component: RegionRessourceComponent },
   { path: 'nomencl', component: NomenclatureComponent },
-  { path: 'crud', component: CrudComponent },
   { path: '', component: NomenclatureComponent },
   {
     path: '',

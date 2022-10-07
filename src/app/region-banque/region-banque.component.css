@@ -1,0 +1,13 @@
+.mat-form-field {
+    font-size: 13px !important;
+}
+.example-section{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.btn-primary {
+    color: #212529;
+    background-color: #ca2020;
+    border-color: #5bc2c2
+}
