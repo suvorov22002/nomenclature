@@ -54,6 +54,15 @@ export class ConsultService {
       }))
   }
 
+  searchRessources(data: any){
+
+    return this.http.post<any>("http://192.168.11.137:18080/o/afb-liferay-rest/afb-users", data)
+    .pipe(map((res: any) => {
+      return res;
+    }))
+
+  }
+
 
 
   getData(data: any, first_name: string, second_name: string, organi: string, sexe_gel: string) {

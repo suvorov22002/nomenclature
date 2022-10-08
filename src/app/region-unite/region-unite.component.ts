@@ -115,12 +115,14 @@ export class RegionUniteComponent implements OnInit {
           }
         });
        
-       // this.listRegion.forEach(t => console.log(JSON.stringify(t)));
+      //  this.listUnit.forEach(t => console.log(JSON.stringify(t)));
       },
       err => {
         console.log(err.message)
       })
   }
+
+  
 
   onChange(catg){
     console.log(catg.value);
